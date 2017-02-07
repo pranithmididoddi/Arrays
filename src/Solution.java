@@ -5,11 +5,12 @@ import java.util.*;
 public class Solution {
 
     public static void main(String[] args){
-        int[] array={3,4,9,11};
-        int taget=7;
+       int[] nums={3,2,1,-4,6,5};
 
-        int[] result=twoSum(array,taget);
-        System.out.println(Arrays.toString(result));
+       for(int i=0;i<nums.length;i++){
+           int index=Math.abs(nums[i]+1);
+           System.out.println(index);
+       }
     }
 
     public static int[] twoSum(int[] nums, int target) {
@@ -142,5 +143,17 @@ public class Solution {
             }
         }
         return max;
+    }
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> list=new ArrayList<>();
+
+        for(int i=0;i<nums.length;i++){
+            int index=Math.abs(nums[i])-1;
+            if(nums[index]<0){
+                list.add(Math.abs(index+1));
+            }
+            nums[index]=-nums[index];
+        }
+        return list;
     }
 }
