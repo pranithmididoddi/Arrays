@@ -211,4 +211,26 @@ public class Solution {
         }
         return false;
     }
+
+    public int[] productExceptSelf(int[] nums) {
+        int[] result=new int[nums.length];
+        int[] a1=new int[nums.length];
+        int[] a2=new int[nums.length];
+
+        a1[0]=1;
+        a2[nums.length-1]=1;
+
+        for(int i=0;i<a1.length-1;i++){
+            a1[i+1]=a1[i]*nums[i];
+        }
+
+        for(int i=a2.length-1;i>0;i--){
+            a2[i-1]=a2[i]*nums[i];
+        }
+
+        for(int i=0;i<result.length;i++){
+            result[i]=a1[i]*a2[i];
+        }
+        return result;
+    }
 }
