@@ -199,4 +199,16 @@ public class Solution {
         }
         return list;
     }
+    public boolean canJump(int[] nums) {
+        int maxJump=nums[0];
+        int maxLength=nums.length-1;
+
+        for(int i=0;i<=maxJump;i++){
+            maxJump=Math.max(maxJump, i+nums[i]);
+            if(maxJump>=maxLength){
+                return true;
+            }
+        }
+        return false;
+    }
 }
