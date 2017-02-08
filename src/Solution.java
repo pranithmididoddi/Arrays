@@ -233,4 +233,25 @@ public class Solution {
         }
         return result;
     }
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> list=new ArrayList<>();
+
+        HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
+        int length=nums.length;
+
+        for(int n : nums){
+            if(map.containsKey(n)){
+                map.put(n,map.get(n)+1);
+            }else{
+                map.put(n,1);
+            }
+        }
+
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(entry.getValue() > length/3){
+                list.add(entry.getKey());
+            }
+        }
+        return list;
+    }
 }
