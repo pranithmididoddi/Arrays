@@ -279,21 +279,44 @@ public class Solution {
     }
 
     public int[] twoSumii(int[] nums, int target) {
-        Map<Integer, Integer> map=new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
 
-        int[] result=new int[2];
+        int[] result = new int[2];
 
-        for(int i=0;i<nums.length;i++){
-            if(map.containsKey(nums[i])){
-                int res=map.get(nums[i]);
-                result[0]=res+1;
-                result[1]=i+1;
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                int res = map.get(nums[i]);
+                result[0] = res + 1;
+                result[1] = i + 1;
                 break;
-            }else{
-                map.put(target-nums[i],i);
+            } else {
+                map.put(target - nums[i], i);
             }
 
         }
         return result;
+    }
+    public int majorityElem(int[] nums) {
 
+        List<Integer> list=new ArrayList<>();
+        int num=0;
+
+        HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
+        int length=nums.length;
+
+        for(int n : nums){
+            if(map.containsKey(n)){
+                map.put(n,map.get(n)+1);
+            }else{
+                map.put(n,1);
+            }
+        }
+
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(entry.getValue() > length/2){
+                num=entry.getKey();
+            }
+        }
+        return num;
+    }
     }
