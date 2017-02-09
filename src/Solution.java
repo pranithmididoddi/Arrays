@@ -337,4 +337,25 @@ public class Solution {
         }
         return list;
     }
+    public int findDuplicate(int[] nums) {
+
+        Map<Integer, Integer> map=new HashMap<>();
+        int num=0;
+
+        for(int i : nums){
+            if(map.containsKey(i)){
+                map.put(i,map.get(i)+1);
+            }else{
+                map.put(i,1);
+            }
+
+        }
+
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(entry.getValue()>1){
+                num=entry.getKey();
+            }
+        }
+        return num;
+    }
     }
