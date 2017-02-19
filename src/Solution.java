@@ -472,4 +472,26 @@ public class Solution {
         return pq.peek();
 
     }
+
+    public static void moveZeroes(int[] nums) {
+        int i = nums.length-1;
+        int j = nums.length-1;
+
+        while (j >= 0) {
+            if (nums[j] == 0) {
+                j--;
+            } else {
+                nums[i] = nums[j];
+                i--;
+                j--;
+            }
+        }
+
+        while (i >=0) {
+            nums[i] = 0;
+            i--;
+        }
+
+
+    }
     }
