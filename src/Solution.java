@@ -517,4 +517,28 @@ public class Solution {
         }
 
     }
+
+    public void sortColors(int[] nums) {
+
+        int[] countarray=new int[3];
+
+        for(int i=0;i<nums.length;i++){
+            countarray[nums[i]]++;
+        }
+
+        for(int i=1;i<countarray.length;i++){
+            countarray[i]=countarray[i]+countarray[i-1];
+        }
+
+        int[] sortedarray=new int[nums.length];
+
+        for(int i=0;i<nums.length;i++){
+            int index=countarray[nums[i]]-1;
+            countarray[nums[i]]=countarray[nums[i]]-1;
+
+            sortedarray[index]=nums[i];
+        }
+
+        System.arraycopy(sortedarray, 0, nums, 0, nums.length);
+    }
     }
