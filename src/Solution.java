@@ -541,4 +541,26 @@ public class Solution {
 
         System.arraycopy(sortedarray, 0, nums, 0, nums.length);
     }
+
+    public int findPeakElement(int[] nums) {
+
+        int index=0;
+        int max=nums[0];
+
+        for(int i=1;i<=nums.length-2;i++){
+            int curr=nums[i];
+            int prev=nums[i-1];
+            int next=nums[i+1];
+
+            if(curr>prev && curr> next && curr>max){
+                max=nums[i];
+                index=i;
+            }
+        }
+
+        if(nums[nums.length-1]>max){
+            index=nums.length-1;
+        }
+        return index;
+    }
     }
