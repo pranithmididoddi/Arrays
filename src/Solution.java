@@ -563,4 +563,33 @@ public class Solution {
         }
         return index;
     }
+
+    public int largestRectangleArea(int[] heights) {
+
+        Stack<Integer> stack=new Stack<>();
+        int i=0;
+        int max=0;
+
+        while(i<heights.length){
+            if(stack.empty() || heights[i]>heights[stack.peek()]){
+                stack.push(i);
+                i++;
+            }
+
+            else{
+                int val=stack.pop();
+                int ht=heights[val];
+                int width=stack.empty()?i :i-stack.peek()-1;
+                max=Math.max(max,ht*width);
+            }
+        }
+
+        while(!stack.empty()){
+            int val=stack.pop();
+            int ht=heights[val];
+            int width=stack.empty()? i : i-stack.peek()-1;
+            max=Math.max(max,ht*width);
+        }
+        return max;
+    }
     }
