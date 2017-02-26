@@ -667,5 +667,35 @@ public class Solution {
 
         return result;
     }
-}
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        int instart=0;
+        int inend=inorder.length-1;
+        int poststart=0;
+        int postend=postorder.length-1;
+
+        TreeNode root=construction(inorder, instart, inend, postorder, poststart, postend);
+
+        return root;
+    }
+
+    public TreeNode construction(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend){
+        if(instart>inend || poststart>postend){
+            return null;
+        }
+
+        int rootval=postorder[postend];
+        TreeNode root=new TreeNode(rootval);
+
+        int k=0;
+        for(int i=0;i<inorder.length;i++){
+            if(inorder[i]==rootval){
+                k=i;
+            }
+        }
+
+        root.left=construction(inorder, instart, k-1, postorder, poststart, poststart+ k-(instart+1) );
+        root.right=construction(inorder,k+1,inend,postorder,k+poststart-instart, postend-1);
+
+        return root;
+    }
     }
