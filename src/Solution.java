@@ -792,4 +792,40 @@ public class Solution {
 
 
     }
+
+    /**Rotate array with space efficiency*/
+    public static void rotate(int[] array, int k){
+        for(int i=0;i<k;i++){
+            for(int j=array.length-1;j>0;j--){
+                int temp=array[j];
+                array[j]=array[j-1];
+                array[j-1]=temp;
+            }
+        }
+
+        System.out.println(Arrays.toString(array));
+    }
+
+    public void rotateArray(int[] nums, int k) {
+
+        if(k>nums.length){
+            k=k%nums.length;
+        }
+
+        int[] result=new int[nums.length];
+
+        for(int i=0;i<k;i++){
+            result[i]=nums[nums.length-k+i];
+        }
+        int j=0;
+        for(int i=k;i<nums.length;i++){
+            result[i]=nums[j];
+            j++;
+        }
+
+        System.arraycopy(result,0,nums,0,nums.length);
+    }
+
+
+
     }
