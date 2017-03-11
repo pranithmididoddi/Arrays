@@ -773,4 +773,23 @@ public class Solution {
         }
         return false;
     }
+
+    public int minimumTotal(List<List<Integer>> triangle) {
+
+        int[] result=new int[triangle.size()];
+        int l=triangle.size()-1;
+
+        for(int i=0;i<triangle.get(l).size();i++){
+            result[i]=triangle.get(l).get(i);
+        }
+
+        for(int i=triangle.size()-2;i>=0;i--){
+            for(int j=0;j<triangle.get(i+1).size()-1;j++){
+                result[j]=triangle.get(i).get(j)+Math.min(result[j],result[j+1]);
+            }
+        }
+        return result[0];
+
+
+    }
     }
